@@ -1,15 +1,21 @@
 package main
 
 import (
-	day01 "aoc-2024/days/01"
 	"aoc-2024/utils"
 	"fmt"
 	"log"
 	"os"
 	"strconv"
+
+	"github.com/joho/godotenv"
 )
 
 func main() {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatalf("Error loading .env file: %v", err)
+	}
+
 	if len(os.Args) == 3 {
 		subcommand := os.Args[1]
 		dayArg := os.Args[2]
@@ -29,5 +35,5 @@ func main() {
 		os.Exit(0)
 	}
 
-	day01.Run()
+	// day01.Run()
 }
