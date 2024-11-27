@@ -1,16 +1,30 @@
 package day01
 
 import (
-	"github.com/nico-mayer/aoc-2024/utils"
 	"fmt"
+
+	"github.com/nico-mayer/aoc-2024/utils"
 )
 
-func Run() {
-	data := utils.LoadData(1, true)
-	fmt.Println("Day 1:")
-	fmt.Println("Part 01:")
-	part01(data)
-	fmt.Println()
-	fmt.Println("Part 02:")
-	part02(data)
+func Run(test bool, day int, part int) {
+	data := utils.LoadData(day, test)
+
+	switch part {
+	case 1:
+		printHeadline(day, part)
+		part01(data)
+	case 2:
+		printHeadline(day, part)
+		part02(data)
+	default:
+		printHeadline(day, 1)
+		part01(data)
+		fmt.Println()
+		printHeadline(day, 2)
+		part02(data)
+	}
+}
+
+func printHeadline(day, partNum int) {
+	fmt.Printf("Day %d:\nPart %02d:\n", day, partNum)
 }

@@ -72,22 +72,35 @@ func createDayBoilerplate(day int) error {
 
 	// Create the day.go file
 	if _, err := os.Stat(codeFile); os.IsNotExist(err) {
-		codeContent := fmt.Sprintf(`package solutions
+		codeContent := fmt.Sprintf(`package day%02d
 
 import (
 	"github.com/nico-mayer/aoc-2024/utils"
 	"fmt"
 )
 
-func Dai%02d() {
-	data := utils.LoadData(%d, true)
-	fmt.Println("Day %d:")
-	fmt.Println("Part 01:")
-	part01(data)
-	fmt.Println()
-	fmt.Println("Part 02:")
-	part02(data)
-}`, day, day, day)
+func Run(test bool, day int, part int) {
+	data := utils.LoadData(day, test)
+
+	switch part {
+	case 1:
+		printHeadline(day, part)
+		part01(data)
+	case 2:
+		printHeadline(day, part)
+		part02(data)
+	default:
+		printHeadline(day, 1)
+		part01(data)
+		fmt.Println()
+		printHeadline(day, 2)
+		part02(data)
+	}
+}
+
+func printHeadline(day, partNum int) {
+	fmt.Printf("Day %%d:\nPart %%02d:\n", day, partNum)
+}`, day)
 
 		if err := os.WriteFile(codeFile, []byte(codeContent), 0644); err != nil {
 			return fmt.Errorf("failed to create code file: %v", err)
@@ -96,7 +109,7 @@ func Dai%02d() {
 
 	// Create part-01 file
 	if _, err := os.Stat(part01File); os.IsNotExist(err) {
-		codeContent := fmt.Sprintf(`package solutions
+		codeContent := fmt.Sprintf(`package day%02d
 
 import (
 	"fmt"
@@ -104,7 +117,7 @@ import (
 
 func part01(data string) {
 	fmt.Println(data)
-}`)
+}`, day)
 
 		if err := os.WriteFile(part01File, []byte(codeContent), 0644); err != nil {
 			return fmt.Errorf("failed to create code file: %v", err)
@@ -113,7 +126,7 @@ func part01(data string) {
 
 	// Create part-02 file
 	if _, err := os.Stat(part02File); os.IsNotExist(err) {
-		codeContent := fmt.Sprintf(`package solutions
+		codeContent := fmt.Sprintf(`package day%02d
 
 import (
 	"fmt"
@@ -121,7 +134,7 @@ import (
 
 func part02(data string) {
 	fmt.Println(data)
-}`)
+}`, day)
 
 		if err := os.WriteFile(part02File, []byte(codeContent), 0644); err != nil {
 			return fmt.Errorf("failed to create code file: %v", err)

@@ -24,8 +24,15 @@ var runCmd = &cobra.Command{
 			return
 		}
 		callback, exists := solutions.Solutions[day]
+		useTestInputData, _ := cmd.Flags().GetBool("test")
+		partToExecute, _ := cmd.Flags().GetInt("part")
+
+		if partToExecute != 0 && partToExecute != 1 && partToExecute != 2 {
+			fmt.Println("Invalid part specified, choose between 1 and 2 or leave empty to execute both")
+			return
+		}
 		if exists {
-			callback()
+			callback(useTestInputData, day, partToExecute)
 		} else {
 			fmt.Printf("There is no Run function for day %d, check if you added it to solutions map\n", day)
 		}
@@ -43,5 +50,6 @@ func init() {
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// runCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	runCmd.Flags().BoolP("test", "t", false, "Specify if this day should use the test dataset")
+	runCmd.Flags().IntP("part", "p", 0, "Specify witch part to execute")
 }
