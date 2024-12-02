@@ -37,18 +37,14 @@ func printHeadline(day, partNum int) {
 }
 
 func formatData(data string) []Report {
-	var res []string
 	lines := strings.Split(data, "\n")
-	for _, line := range lines {
-		if line == "" {
-
-			continue
-		}
-		res = append(res, line)
-	}
 
 	var reports []Report
 	for _, line := range lines {
+		if line == "" {
+			continue
+		}
+
 		levels := strings.Fields(line)
 		var report Report
 		for _, level := range levels {
