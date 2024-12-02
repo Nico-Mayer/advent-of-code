@@ -49,3 +49,12 @@ func PositivDistance(a, b int) int {
 		return a - b
 	}
 }
+
+func Sign(v int) int {
+	if v < 0 {
+		return -1
+	} else if v > 0 {
+		return 1
+	}
+	return 0
+}
