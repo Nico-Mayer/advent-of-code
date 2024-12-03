@@ -1,13 +1,38 @@
 package utils
 
 import (
+	"bufio"
 	"fmt"
 	"log"
 	"os"
 	"strconv"
+	"strings"
 )
 
-func LoadData(day int, test bool) string {
+func LoadData(day int, test bool) []string {
+	filePath := fmt.Sprintf("./solutions/day%02d/input.txt", day)
+	if test {
+		filePath = fmt.Sprintf("./solutions/day%02d/input.test.txt", day)
+	}
+
+	file, err := os.Open(filePath)
+	if err != nil {
+		log.Panic("ERROR:", err)
+	}
+	defer file.Close()
+
+	var lines []string
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		if scanner.Text() == "" {
+			continue
+		}
+		lines = append(lines, scanner.Text())
+	}
+	return lines
+}
+
+func LoadDataAsString(day int, test bool) string {
 	filePath := fmt.Sprintf("./solutions/day%02d/input.txt", day)
 	if test {
 		filePath = fmt.Sprintf("./solutions/day%02d/input.test.txt", day)
@@ -18,7 +43,7 @@ func LoadData(day int, test bool) string {
 		log.Panic("ERROR:", err)
 	}
 
-	return string(fileContent)
+	return strings.Trim(string(fileContent), "\n")
 }
 
 func ToIntSlice(stringSlice []string) ([]int, error) {

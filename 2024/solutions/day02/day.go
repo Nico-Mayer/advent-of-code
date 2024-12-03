@@ -14,21 +14,21 @@ type Report struct {
 }
 
 func Run(test bool, day int, part int) {
-	data := utils.LoadData(day, test)
+	lines := utils.LoadData(day, test)
 
 	switch part {
 	case 1:
 		printHeadline(day, part)
-		part01(data)
+		part01(lines)
 	case 2:
 		printHeadline(day, part)
-		part02(data)
+		part02(lines)
 	default:
 		printHeadline(day, 1)
-		part01(data)
+		part01(lines)
 		fmt.Println()
 		printHeadline(day, 2)
-		part02(data)
+		part02(lines)
 	}
 }
 
@@ -36,15 +36,9 @@ func printHeadline(day, partNum int) {
 	fmt.Printf("Day %d:\nPart %02d:\n", day, partNum)
 }
 
-func formatData(data string) []Report {
-	lines := strings.Split(data, "\n")
-
+func formatData(lines []string) []Report {
 	var reports []Report
 	for _, line := range lines {
-		if line == "" {
-			continue
-		}
-
 		levels := strings.Fields(line)
 		var report Report
 		for _, level := range levels {

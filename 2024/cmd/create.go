@@ -80,21 +80,21 @@ import (
 )
 
 func Run(test bool, day int, part int) {
-	data := utils.LoadData(day, test)
+	lines := utils.LoadData(day, test)
 
 	switch part {
 	case 1:
 		printHeadline(day, part)
-		part01(data)
+		part01(lines)
 	case 2:
 		printHeadline(day, part)
-		part02(data)
+		part02(lines)
 	default:
 		printHeadline(day, 1)
-		part01(data)
+		part01(lines)
 		fmt.Println()
 		printHeadline(day, 2)
-		part02(data)
+		part02(lines)
 	}
 }
 
@@ -115,8 +115,8 @@ import (
 	"fmt"
 )
 
-func part01(data string) {
-	fmt.Println(data)
+func part01(lines []string) {
+	fmt.Println(lines)
 }`, day)
 
 		if err := os.WriteFile(part01File, []byte(codeContent), 0644); err != nil {
@@ -132,15 +132,14 @@ import (
 	"fmt"
 )
 
-func part02(data string) {
-	fmt.Println(data)
+func part02(lines []string) {
+	fmt.Println(lines)
 }`, day)
 
 		if err := os.WriteFile(part02File, []byte(codeContent), 0644); err != nil {
 			return fmt.Errorf("failed to create code file: %v", err)
 		}
 	}
-
 	return nil
 }
 

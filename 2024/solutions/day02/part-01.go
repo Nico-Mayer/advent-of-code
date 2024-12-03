@@ -6,8 +6,8 @@ import (
 	"github.com/nico-mayer/aoc-2024/utils"
 )
 
-func part01(data string) {
-	reports := formatData(data)
+func part01(lines []string) {
+	reports := formatData(lines)
 
 	var saveReportsCount int
 	for _, report := range reports {

@@ -4,8 +4,8 @@ import (
 	"fmt"
 )
 
-func part02(data string) {
-	reports := formatData(data)
+func part02(lines []string) {
+	reports := formatData(lines)
 
 	var saveReportsCount int
 	for _, report := range reports {

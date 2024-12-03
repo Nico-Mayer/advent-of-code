@@ -7,8 +7,8 @@ import (
 	"github.com/nico-mayer/aoc-2024/utils"
 )
 
-func part01(data string) {
-	left, right := formatData(data)
+func part01(lines []string) {
+	left, right := formatData(lines)
 	sort.Ints(left)
 	sort.Ints(right)
 	var distance int

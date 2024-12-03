@@ -2,8 +2,8 @@ package day01
 
 import "fmt"
 
-func part02(data string) {
-	left, right := formatData(data)
+func part02(lines []string) {
+	left, right := formatData(lines)
 	var simScore int
 
 	for _, leftV := range left {
