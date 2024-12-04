@@ -8,14 +8,15 @@ import (
 
 func part02(lines []string) {
 	solution := 0
+	targetWord := "MAS"
 	for row, line := range lines {
 		for col, r := range line {
 			if r != rune('A') {
 				continue
 			}
 
-			if crossInBound(row, col, lines, "MAS") {
-				if checkCross(row, col, lines, "MAS") {
+			if crossInBound(row, col, lines, targetWord) {
+				if checkCross(row, col, lines, targetWord) {
 					solution++
 				}
 			}
