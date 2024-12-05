@@ -5,6 +5,7 @@ import (
 	"github.com/nico-mayer/aoc-2024/solutions/day02"
 	"github.com/nico-mayer/aoc-2024/solutions/day03"
 	"github.com/nico-mayer/aoc-2024/solutions/day04"
+	"github.com/nico-mayer/aoc-2024/solutions/day05"
 )
 
 var Solutions = map[int]func(bool, int, int){
@@ -12,5 +13,6 @@ var Solutions = map[int]func(bool, int, int){
 	2: day02.Run,
 	3: day03.Run,
 	4: day04.Run,
+	5: day05.Run,
 	// Add more days here
 }

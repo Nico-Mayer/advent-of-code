@@ -24,11 +24,19 @@ func LoadData(day int, test bool) []string {
 	var lines []string
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
-		if scanner.Text() == "" {
-			continue
-		}
 		lines = append(lines, scanner.Text())
 	}
+
+	// Trim empty lines at the start
+	for len(lines) > 0 && lines[0] == "" {
+		lines = lines[1:]
+	}
+
+	// Trim empty lines at the end
+	for len(lines) > 0 && lines[len(lines)-1] == "" {
+		lines = lines[:len(lines)-1]
+	}
+
 	return lines
 }
 
@@ -83,6 +91,7 @@ func Sign(v int) int {
 	}
 	return 0
 }
+
 func ReverseString(s string) string {
 	runes := []rune(s)
 	n := len(runes)
@@ -92,4 +101,13 @@ func ReverseString(s string) string {
 	}
 
 	return string(runes)
+}
+
+func FindIndex[T comparable](slice []T, value T) (index int, exists bool) {
+	for i, v := range slice {
+		if v == value {
+			return i, true
+		}
+	}
+	return -1, false
 }
